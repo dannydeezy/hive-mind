@@ -1,4 +1,5 @@
-const expireTime = 1000 * 60 * 5; // 5 minutes;
+const host = 'localhost:4000'
+const expireTime = 1000 * 60 * 5 // 5 minutes;
 (() => {
     class myWebsocketHandler {
 
@@ -56,7 +57,7 @@ const expireTime = 1000 * 60 * 5; // 5 minutes;
         }
 
         setupSocket() {
-            this.socket = new WebSocket("ws://localhost:4000/ws/chat")
+            this.socket = new WebSocket("ws://" + host +"/ws/chat")
 
             this.socket.addEventListener("message", (event) => {
                 this.handleMessage(event.data)
