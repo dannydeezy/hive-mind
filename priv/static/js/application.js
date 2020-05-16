@@ -3,7 +3,6 @@ const expireTime = 1000 * 60 * 5; // 5 minutes;
     class myWebsocketHandler {
 
         vote(message) {
-            console.log('voting')
             this.socket.send(
                 JSON.stringify({
                     data: {message: message},
@@ -32,7 +31,6 @@ const expireTime = 1000 * 60 * 5; // 5 minutes;
                 pTag.className = "entry"
                 if (myCreations[m]) pTag.className += " mycreation"
                 const self = this
-                console.log('setting onclick')
                 pTag.onclick = function() {
                     websocketClass.vote(m)
                 }
@@ -82,7 +80,6 @@ const expireTime = 1000 * 60 * 5; // 5 minutes;
             myCreations[message] = true
             this.vote(message)
             var main = document.getElementById("main")
-            console.dir(main.scrollHeight)
             main.scrollTop = main.scrollHeight
         }
     }
