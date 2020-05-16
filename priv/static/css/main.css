@@ -1,0 +1,78 @@
+body {
+    color: black;
+    background-color:white;
+    text-align: center;
+    user-select: none;  
+} 
+
+#main {
+    position:fixed;
+    overflow:scroll;
+    overflow-wrap:break-word;
+    height: 100%;
+    right:50%;
+    margin-right:-50%;
+    width:100%;
+}
+
+#text-entry {
+    position:fixed;
+    bottom:0px;
+    height:20%;
+    right:50%;
+    margin-right:-50%;
+    width:100%;
+    background: rgba(70, 70, 70, 0.7);
+}
+.smalltext {
+    font-size:8pt;
+}
+
+.entry {
+    max-width:90%;
+    margin:auto;
+}
+.mycreation {
+    color:black;
+}
+.entry:hover{
+    cursor:pointer;
+    color:green;
+}
+#button {
+    display:none;
+}
+#message {
+    width:70%;
+    text-align:center;
+    font-size:18pt;
+    border-radius:10px;
+    border: 1px solid black;
+    background:white;
+    opacity: 1;
+    user-select: none;  
+}
+
+#rank-0 {
+    font-size:36pt;
+}
+
+#rank-1 {
+    font-size:24pt;
+}
+
+#rank-2 {
+    font-size:18pt;
+}
+
+#rank-3 {
+    font-size:12pt;
+}
+
+#rank-4 {
+    font-size:10pt;
+}
+
+#rank-low {
+    font-size:10pt;
+}
