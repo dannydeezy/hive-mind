@@ -8,7 +8,7 @@ defmodule Hivemind do
         plug: Hivemind.Router,
         options: [
           dispatch: dispatch(),
-          port: 4000
+          port: 80
         ]
       ),
       Registry.child_spec(
