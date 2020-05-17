@@ -28,7 +28,7 @@ defmodule Hivemind.SocketHandler do
       
       Registry.Hivemind
       |> Registry.dispatch(state.registry_key, fn(entries) -> 
-        Parallel.pmap entries, &(if $1 != self() do Process.send($1, message, []) end)
+        Parallel.pmap entries, &(if &1 != self() do Process.send(&1, message, []) end)
       end)
   
       {:reply, {:text, message}, state}
