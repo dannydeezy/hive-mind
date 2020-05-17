@@ -38,7 +38,6 @@ function flashElement(id, attribute, color, originalColor) {
                 pTag.onclick = function() {
                     const input = document.getElementById("message")
                     input.value = m
-                    input.focus()
                     websocketClass.vote(m)
                 }
                 main.append(pTag) 
