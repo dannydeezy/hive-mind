@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <link rel="icon" type="image/svg+xml" href="img/polymer-24px.svg">
     <script type="application/javascript" defer="defer" src="js/messages.js"></script>
     <script type="application/javascript" defer="defer" src="js/message-util.js"></script>
     <script type="application/javascript" defer="defer" src="js/application.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>
-      HiveMind
+      Hive Mind
     </title>
   </head>
   <body>
