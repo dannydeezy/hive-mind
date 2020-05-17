@@ -23,3 +23,5 @@ erl_crash.dump
 hivemind-*.tar
 
 node_modules
+
+priv/static/js/messages.js
