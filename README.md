@@ -25,4 +25,4 @@ Then from the root folder run
 sudo iex -S mix
 ```
 
-Note - this starts an HTTPS server at localhost port 443. If you want to run locally without `sudo` or HTTPS, you'll need to message around with some of the config options. DM me on Twitter with questions!
+Note - this starts an HTTPS server at localhost port 443. If you want to run locally without `sudo` or HTTPS, you'll need to mess around with some of the config options. DM me on Twitter with questions!
