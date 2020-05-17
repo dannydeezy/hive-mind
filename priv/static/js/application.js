@@ -19,7 +19,7 @@ function flashElement(id, attribute, color, originalColor) {
                 })
             )
         }
-        updateMessageDisplays() {
+    updateMessageDisplays() {
             const justMessages = sortedMessages(messages)
             const main = document.getElementById("main")
             main.innerHTML = "<br><br><br>"
