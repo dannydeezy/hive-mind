@@ -7,7 +7,7 @@ const util = require(`${jspath}/message-util.js`)
 const ws = new WebSocket('wss://localhost:443/ws/chat', { perMessageDeflate: false });
 
 function localMaybeSaveMessage(message) {
-    if (isIllegal(message)) return false;
+    if (util.isIllegal(message)) return false;
     if (messages[message] && messages[message].votes) {
         messages[message].votes++
         messages[message].initTime = Date.now()
