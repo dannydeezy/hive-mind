@@ -32,6 +32,9 @@ const expireTime = 1000 * 60 * 5;
                 if (myCreations[m]) pTag.className += " mycreation"
                 const self = this
                 pTag.onclick = function() {
+                    const input = document.getElementById("message")
+                    input.value = m
+                    input.focus()
                     websocketClass.vote(m)
                 }
                 main.append(pTag) 
