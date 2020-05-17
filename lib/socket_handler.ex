@@ -1,3 +1,11 @@
+defmodule Parallel do
+  def pmap(collection, func) do
+    collection
+    |> Enum.map(&(Task.async(fn -> func.(&1) end)))
+    |> Enum.map(&Task.await/1)
+  end
+end
+
 defmodule Hivemind.SocketHandler do
     @behaviour :cowboy_websocket
   
@@ -20,12 +28,7 @@ defmodule Hivemind.SocketHandler do
       
       Registry.Hivemind
       |> Registry.dispatch(state.registry_key, fn(entries) -> 
-        for {pid, _} <- entries do
-          IO.puts(pid)
-          if pid != self() do
-            Process.send(pid, message, [])
-          end
-        end
+        Parallel.pmap entries, &(if $1 != self() do Process.send($1, message, []) end)
       end)
   
       {:reply, {:text, message}, state}
