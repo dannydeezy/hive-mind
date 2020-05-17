@@ -4,7 +4,7 @@ const jspath = '../priv/static/js'
 const messagesFile = `${jspath}/messages.js`
 let messages = JSON.parse(fs.readFileSync(messagesFile).toString().replace('const messages = ', ''))
 const util = require(`${jspath}/message-util.js`)
-const ws = new WebSocket('wss://hive-mind.xyz:443/ws/chat', { perMessageDeflate: false });
+const ws = new WebSocket('wss://hive-mind.xyz/ws/chat', { perMessageDeflate: false });
 
 function localMaybeSaveMessage(message) {
     if (util.isIllegal(message)) return false;
