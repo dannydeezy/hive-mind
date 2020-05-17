@@ -13,7 +13,6 @@ function localMaybeSaveMessage(message) {
     } else {
         messages[message] = { votes: 1, initTime: Date.now() }
     }
-    true;
 }
 
 function begin() {
@@ -31,6 +30,7 @@ function begin() {
         setInterval(() => {
             const data = `const messages = ${JSON.stringify(messages)}`
             fs.writeFileSync(`${jspath}/messages.js`, data)
+            messages = util.removeOldMessages(messages)
         }, 1000)
     })
 }

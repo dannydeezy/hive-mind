@@ -7,6 +7,7 @@ function removeOldMessages(messages) {
             delete messages[message]
         }
     }
+    return messages
 }
 
 function sortedMessages(messages) {
