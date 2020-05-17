@@ -15,7 +15,7 @@ defmodule Hivemind do
           dispatch: dispatch(),
           port: 443
         ],
-
+        cowboy_options
       ),
       Registry.child_spec(
         keys: :duplicate,
