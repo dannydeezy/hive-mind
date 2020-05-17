@@ -75,7 +75,7 @@ function flashElement(id, attribute, color, originalColor) {
         submit(event) {
             event.preventDefault()
             const textEntryElem = document.getElementById("text-entry")
-            flashElement("text-entry", "background-color", "green", textEntryElem.style['background-color'])
+            flashElement("text-entry", "background-color", "green", 'rgba(70, 70, 70, 0.7)')
             const input = document.getElementById("message")
             const message = input.value
             if (isIllegal(message)) {
