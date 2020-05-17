@@ -1,4 +1,4 @@
-const host = 'localhost:80';
+const host = 'hive-mind.xyz';
 let mostRecentMessage = '';
 
 
