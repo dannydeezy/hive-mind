@@ -43,7 +43,7 @@ body {
 }
 .entry:hover{
     cursor:pointer;
-    color:green;
+    font-weight:bold;
 }
 #message {
     width:70%;
@@ -56,12 +56,6 @@ body {
     user-select: none;  
     padding-top:10px;
     padding-bottom:10px;
-}
-#button {
-    border: 2px solid black;
-    border-radius:10px;
-    background: green;
-    color: black;
 }
 
 #rank-0 {
