@@ -95,10 +95,10 @@ function flashElement(id, attribute, color, originalColor) {
     const myCreations = {}
     websocketClass.updateMessageDisplays()
 
-    
+    /*
     setInterval(function() {
         removeOldMessages(messages)
-    }, 5000)
+    }, 5000)*/
 
     var input = document.getElementById("message");
     // Execute a function when the user releases a key on the keyboard
