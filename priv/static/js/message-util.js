@@ -27,9 +27,9 @@ function maybeSaveMessage(messages, message) {
     } else {
         messages[message] = { votes: 1, initTime: Date.now() }
     }
-    return true;
+    true;
 }
 
 if (typeof module !== 'undefined') {
-    module.exports = { expireTime, removeOldMessages, sortedMessages, isIllegal, maybeSaveMessage }
+    module.exports = { expireTime, removeOldMessages, sortedMessages, isIllegal }
 }
