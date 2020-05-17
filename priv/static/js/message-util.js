@@ -1,4 +1,4 @@
-const expireTime = 1000 * 60 * 5;
+const expireTime = 1000 * 60 * 1;
 
 function removeOldMessages(messages) {
     // Clear outdated ones first
@@ -23,6 +23,7 @@ function maybeSaveMessage(messages, message) {
     if (isIllegal(message)) return false;
     if (messages[message] && messages[message].votes) {
         messages[message].votes++
+        messages[message].initTime = Date.now()
     } else {
         messages[message] = { votes: 1, initTime: Date.now() }
     }
