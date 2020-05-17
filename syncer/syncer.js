@@ -17,13 +17,15 @@ function localMaybeSaveMessage(message) {
     true;
 }
 
-ws.on('message', function incoming(data) {
-    localMaybeSaveMessage(data)
-});
-
-
 ws.on('open', () => {
     console.log('Socket opened')
+    ws.on('message', function incoming(data) {
+        localMaybeSaveMessage(data)
+    });
+    
+    ws.on('close', () => {
+        console.log('socket closed')
+    })
     setInterval(() => {
         const data = `const messages = ${JSON.stringify(messages)}`
         fs.writeFileSync(`${jspath}/messages.js`, data)
