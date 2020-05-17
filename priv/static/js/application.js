@@ -1,8 +1,7 @@
-const host = 'localhost:4000'
-const expireTime = 1000 * 60 * 5 // 5 minutes;
+const host = 'localhost:80'
+const expireTime = 1000 * 60 * 5;
 (() => {
     class myWebsocketHandler {
-
         vote(message) {
             this.socket.send(
                 JSON.stringify({
@@ -72,7 +71,6 @@ const expireTime = 1000 * 60 * 5 // 5 minutes;
             event.preventDefault()
             const input = document.getElementById("message")
             const message = input.value
-            input.value = ""
             if (this.isIllegal(message)) {
                 if (message !== "") {
                     alert("Illegal Message! Special characters \\ / < > not allowed.")
@@ -89,7 +87,12 @@ const expireTime = 1000 * 60 * 5 // 5 minutes;
     websocketClass.setupSocket()
     const myCreations = {}
     const currentData = JSON.parse(localStorage.getItem('messages'))
-    const messages = currentData || {}
+    const messages = currentData || {
+        "welcome to hive mind": { votes: 4, initTime: Date.now()},
+        "the best thoughts rise to the top": { votes: 2, initTime: Date.now()},
+        "type a thought below and press enter": { votes: 1, initTime: Date.now()},
+        "click on thoughts to upvote them": { votes: 1, initTime: Date.now()}
+    }
     websocketClass.updateMessageDisplays()
 
     setInterval(function() {
@@ -99,10 +102,14 @@ const expireTime = 1000 * 60 * 5 // 5 minutes;
     var input = document.getElementById("message");
     // Execute a function when the user releases a key on the keyboard
     input.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        // Trigger the button element with a click
-        websocketClass.submit(event);
-    }
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            // Trigger the button element with a click
+            websocketClass.submit(event);
+        } else if (event.keyCode === 27) {
+            event.preventDefault();
+            document.getElementById("message").value("")
+            websocketClass.submit(event);
+        }
     });
-  })()
+})()
