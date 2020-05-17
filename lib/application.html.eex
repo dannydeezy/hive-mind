@@ -9,7 +9,7 @@
     <meta property="og:url" content="https://hive-mind.xyz" />
     <meta property="og:title" content="Experience the Hive Mind" />
     <meta property="og:description" content="Add your thoughts and vote on others. Experience the Hive Mind - the best thoughts rise to the top." />
-    <meta property="og:image" content="" />
+    <meta property="og:image" content="https://hive-mind.xyz/polymer-24px.png" />
     <link rel="icon" href="polymer-24px.png">
     <script type="application/javascript" defer="defer" src="js/messages.js"></script>
     <script type="application/javascript" defer="defer" src="js/message-util.js"></script>
