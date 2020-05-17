@@ -62,7 +62,7 @@ function flashElement(id, attribute, color, originalColor) {
         }
 
         setupSocket() {
-            this.socket = new WebSocket("ws://" + host +"/ws/chat")
+            this.socket = new WebSocket("wss://" + host +"/ws/chat")
 
             this.socket.addEventListener("message", (event) => {
                 this.handleMessage(event.data)
