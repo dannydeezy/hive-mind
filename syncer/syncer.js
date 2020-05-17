@@ -30,7 +30,7 @@ function begin() {
         setInterval(() => {
             const data = `const messages = ${JSON.stringify(messages)}`
             fs.writeFileSync(`${jspath}/messages.js`, data)
-            messages = util.removeOldMessages(messages)
+            // messages = util.removeOldMessages(messages)
         }, 1000)
     })
 }
