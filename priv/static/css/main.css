@@ -2,7 +2,8 @@ body {
     color: black;
     background-color:white;
     text-align: center;
-    user-select: none;  
+    user-select: none;
+    font-family: 'Arial';
 } 
 
 #main {
@@ -15,14 +16,19 @@ body {
     width:100%;
 }
 
+.messageSelected {
+    font-weight: bold;
+}
+
 #text-entry {
     position:fixed;
     bottom:0px;
-    height:20%;
+    height:140px;
     right:50%;
     margin-right:-50%;
     width:100%;
     background: rgba(70, 70, 70, 0.7);
+    cursor:pointer;
 }
 .smalltext {
     font-size:8pt;
@@ -39,9 +45,6 @@ body {
     cursor:pointer;
     color:green;
 }
-#button {
-    display:none;
-}
 #message {
     width:70%;
     text-align:center;
@@ -51,6 +54,14 @@ body {
     background:white;
     opacity: 1;
     user-select: none;  
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#button {
+    border: 2px solid black;
+    border-radius:10px;
+    background: green;
+    color: black;
 }
 
 #rank-0 {

@@ -13,7 +13,7 @@
     <main id="main"></main>
     <div id="text-entry">
     <br><br>
-    <input id="message" type="text" maxlength="200" autocomplete="off">
+    <input id="message" type="text" placeholder="Type something here..." maxlength="200" autocomplete="off">
     </div>
   </body>
 </html>

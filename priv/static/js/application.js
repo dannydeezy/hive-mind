@@ -1,8 +1,19 @@
-const host = 'localhost:80'
+const host = 'localhost:80';
 const expireTime = 1000 * 60 * 5;
+let mostRecentMessage = '';
+
+
+function flashElement(id, attribute, color, originalColor) {
+    const elem = document.getElementById(id)
+    elem.style[attribute] = color
+    setTimeout(() => {
+        elem.style[attribute] = originalColor
+    }, 100)
+}
 (() => {
     class myWebsocketHandler {
         vote(message) {
+            mostRecentMessage = message;
             this.socket.send(
                 JSON.stringify({
                     data: {message: message},
@@ -29,8 +40,9 @@ const expireTime = 1000 * 60 * 5;
                 }
                 pTag.innerHTML = `${m}<sup class=smalltext> (${messages[m].votes})</sup><br><br>`
                 pTag.className = "entry"
-                if (myCreations[m]) pTag.className += " mycreation"
-                const self = this
+                if (m === mostRecentMessage) {
+                    pTag.className += " messageSelected"
+                }
                 pTag.onclick = function() {
                     const input = document.getElementById("message")
                     input.value = m
@@ -42,6 +54,12 @@ const expireTime = 1000 * 60 * 5;
             for (let i=0; i < 10; i++) {
                 main.append(document.createElement('br'))
             }
+            /*
+            var selected = document.getElementsByClassName( 'messageSelected' )
+            if (selected.length > 0) {
+                selected[0].documentOffsetTop() - ( main.innerHeight / 2 );
+                main.scrollTo( 0, selected[0] );     
+            }*/
         }
         isIllegal(message) {
             return message === "" || message.length > 200 || message.includes("\\") || message.includes(">")
@@ -72,6 +90,8 @@ const expireTime = 1000 * 60 * 5;
 
         submit(event) {
             event.preventDefault()
+            const textEntryElem = document.getElementById("text-entry")
+            flashElement("text-entry", "background-color", "green", textEntryElem.style['background-color'])
             const input = document.getElementById("message")
             const message = input.value
             if (this.isIllegal(message)) {
@@ -82,7 +102,7 @@ const expireTime = 1000 * 60 * 5;
             myCreations[message] = true
             this.vote(message)
             var main = document.getElementById("main")
-            main.scrollTop = main.scrollHeight
+            // main.scrollTop = main.scrollHeight
         }
     }
   
@@ -115,4 +135,14 @@ const expireTime = 1000 * 60 * 5;
             websocketClass.submit(event);
         }
     });
+    document.getElementById("text-entry").onclick = function(event) {
+        websocketClass.submit(event)
+    }
+    document.getElementById("message").onclick = function(event) {
+        event.stopPropagation()
+    }
+    /*
+    Element.prototype.documentOffsetTop = function () {
+        return this.offsetTop + ( this.offsetParent ? this.offsetParent.documentOffsetTop() : 0 );
+    };*/
 })()
