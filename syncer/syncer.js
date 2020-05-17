@@ -4,7 +4,7 @@ const jspath = '../priv/static/js'
 const messagesFile = `${jspath}/messages.js`
 let messages = JSON.parse(fs.readFileSync(messagesFile).toString().replace('const messages = ', ''))
 const util = require(`${jspath}/message-util.js`)
-const ws = new WebSocket('ws://localhost:433/ws/chat');
+const ws = new WebSocket('wss://localhost/ws/chat');
 
 function localMaybeSaveMessage(message) {
     if (util.isIllegal(message)) return false;
