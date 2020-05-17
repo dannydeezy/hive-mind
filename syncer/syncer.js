@@ -17,11 +17,13 @@ function localMaybeSaveMessage(message) {
     true;
 }
 
-ws.on('message', function incoming(data) {
-    localMaybeSaveMessage(data)
-});
+ws.on('open', () => {
+    ws.on('message', function incoming(data) {
+        localMaybeSaveMessage(data)
+    });
+    setInterval(() => {
+        const data = `const messages = ${JSON.stringify(messages)}`
+        fs.writeFileSync(`${jspath}/messages.js`, data)
+    }, 1000)
+})
 
-setInterval(() => {
-    const data = `const messages = ${JSON.stringify(messages)}`
-    fs.writeFileSync(`${jspath}/messages.js`, data)
-}, 1000)
