@@ -1,4 +1,1 @@
-const messages = {
-    "welcome to hive mind": { "votes": 4, "initTime": 1589737723890},
-    "the best thoughts rise to the top": { "votes": 2, "initTime": 1589737723890}
-}
+const messages = {"hi":{"votes":1,"initTime":1589739328013},"hello":{"votes":1,"initTime":1589739331272},"waddup":{"votes":1,"initTime":1589739334060}}

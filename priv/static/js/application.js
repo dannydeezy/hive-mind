@@ -20,7 +20,7 @@ function flashElement(id, attribute, color, originalColor) {
             )
         }
         updateMessageDisplays() {
-            const justMessages = sortedMessages()
+            const justMessages = sortedMessages(messages)
             const main = document.getElementById("main")
             main.innerHTML = "<br><br><br>"
             justMessages.forEach((m, rank) => {
@@ -54,10 +54,10 @@ function flashElement(id, attribute, color, originalColor) {
             }*/
         }
         handleMessage(message) {
-            const legal = maybeSaveMessage(message)
+            const legal = maybeSaveMessage(messages, message)
             if (legal) {
                 this.updateMessageDisplays()
-                localStorage.setItem('messages', JSON.stringify(messages))
+                // localStorage.setItem('messages', JSON.stringify(messages))
             }
         }
 

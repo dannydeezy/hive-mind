@@ -1,6 +1,6 @@
 const expireTime = 1000 * 60 * 5;
 
-function removeOldMessages() {
+function removeOldMessages(messages) {
     // Clear outdated ones first
     for (const message of Object.keys(messages)) {
         if (Date.now() - messages[message].initTime > expireTime) {
@@ -9,7 +9,7 @@ function removeOldMessages() {
     }
 }
 
-function sortedMessages() {
+function sortedMessages(messages) {
     const justMessages = Object.keys(messages)
     return justMessages.sort((a,b) => messages[b].votes - messages[a].votes)
 }
@@ -19,7 +19,7 @@ function isIllegal(message) {
     || message.includes("<") || message.includes("/")
 }
 
-function maybeSaveMessage(message) {
+function maybeSaveMessage(messages, message) {
     if (isIllegal(message)) return false;
     if (messages[message] && messages[message].votes) {
         messages[message].votes++
@@ -27,4 +27,8 @@ function maybeSaveMessage(message) {
         messages[message] = { votes: 1, initTime: Date.now() }
     }
     return true;
+}
+
+if (typeof module !== 'undefined') {
+    module.exports = { expireTime, removeOldMessages, sortedMessages, isIllegal, maybeSaveMessage }
 }
