@@ -19,7 +19,7 @@ function flashElement(id, attribute, color, originalColor) {
                 })
             )
         }
-    updateMessageDisplays() {
+        updateMessageDisplays() {
             const justMessages = sortedMessages(messages)
             const main = document.getElementById("main")
             main.innerHTML = "<br><br><br>"
@@ -53,9 +53,9 @@ function flashElement(id, attribute, color, originalColor) {
             }*/
         }
         handleMessage(message) {
-            const legal = maybeSaveMessage(messages, message)
+            const legal = maybeSaveMessage(message)
             if (legal) {
-                this.updateMessageDisplays()
+                websocketClass.updateMessageDisplays()
                 // localStorage.setItem('messages', JSON.stringify(messages))
             }
         }
@@ -64,11 +64,11 @@ function flashElement(id, attribute, color, originalColor) {
             this.socket = new WebSocket("wss://" + host +"/ws/chat")
 
             this.socket.addEventListener("message", (event) => {
-                this.handleMessage(event.data)
+                websocketClass.handleMessage(event.data)
             })
 
             this.socket.addEventListener("close", () => {
-                this.setupSocket()
+                websocketClass.setupSocket()
             })
         }
 

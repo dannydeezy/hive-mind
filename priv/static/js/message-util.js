@@ -19,7 +19,7 @@ function isIllegal(message) {
     || message.includes("<") || message.includes("/")
 }
 
-function maybeSaveMessage(messages, message) {
+function maybeSaveMessage(message) {
     if (isIllegal(message)) return false;
     if (messages[message] && messages[message].votes) {
         messages[message].votes++
