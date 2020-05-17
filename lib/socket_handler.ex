@@ -21,6 +21,7 @@ defmodule Hivemind.SocketHandler do
       Registry.Hivemind
       |> Registry.dispatch(state.registry_key, fn(entries) -> 
         for {pid, _} <- entries do
+          IO.puts(pid)
           if pid != self() do
             Process.send(pid, message, [])
           end
