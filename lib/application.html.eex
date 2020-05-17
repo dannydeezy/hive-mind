@@ -11,6 +11,19 @@
     <meta property="og:description" content="Add your thoughts and vote on others. Experience the Hive Mind - the best thoughts rise to the top." />
     <meta property="og:image" content="https://hive-mind.xyz/polymer-24px.png" />
     <link rel="icon" href="polymer-24px.png">
+    <script src id="messagesScript"></script>
+    <script src id="utilScript"></script>
+    <script src id="appScript"></script>
+    <script type="text/javascript">
+      // Prevent caching
+      const messagesPath = 'js/messages.js';
+      const utilPath = 'js/message-util.js';
+      const appPath = 'js/application.js';
+      const version = '?v=' + Date.now();
+      document.getElementById('messagesScript').src = messagesPath + version;
+      document.getElementById('utilScript').src = utilPath + version;
+      document.getElementById('appScript').src = appPath + version;
+    </script>
     <script type="application/javascript" defer="defer" src="js/messages.js"></script>
     <script type="application/javascript" defer="defer" src="js/message-util.js"></script>
     <script type="application/javascript" defer="defer" src="js/application.js"></script>
