@@ -2,17 +2,20 @@ defmodule Hivemind do
   use Application
 
   def start(_type, _args) do
+    cowboy_options = [          
+      keyfile: "/etc/letsencrypt/live/hive-mind.xyz/privkey.pem",
+      certfile: "/etc/letsencrypt/live/hive-mind.xyz/fullchain.pem",
+      opt_app: :secure_app
+    ]
     children = [
       Plug.Cowboy.child_spec(
-        scheme: :https,
-        plug: Hivemind.Router,
-        options: [
+        :https,
+        Hivemind.Router,
+        [
           dispatch: dispatch(),
           port: 443,
-          keyfile: "/etc/letsencrypt/live/hive-mind.xyz/privkey.pem",
-          certfile: "/etc/letsencrypt/live/hive-mind.xyz/fullchain.pem",
-          opt_app: :secure_app
-        ]
+        ],
+        cowboy_options
       ),
       Registry.child_spec(
         keys: :duplicate,
