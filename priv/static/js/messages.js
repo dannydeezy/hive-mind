@@ -1,1 +1,1 @@
-const messages = {"hi":{"votes":1,"initTime":1589739328013},"hello":{"votes":1,"initTime":1589739331272},"waddup":{"votes":1,"initTime":1589739334060}}
+const messages = {}
