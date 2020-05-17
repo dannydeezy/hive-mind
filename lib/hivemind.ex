@@ -4,9 +4,9 @@ defmodule Hivemind do
   def start(_type, _args) do
     children = [
       Plug.Cowboy.child_spec(
-        :https,
-        Hivemind.Router,
-        [
+        scheme: :https,
+        plug: Hivemind.Router,
+        options: [
           dispatch: dispatch(),
           port: 443,
           keyfile: "/etc/letsencrypt/live/hive-mind.xyz/privkey.pem",
