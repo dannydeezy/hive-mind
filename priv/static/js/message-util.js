@@ -1,4 +1,4 @@
-const expireTime = 1000 * 60 * 1;
+const expireTime = 1000 * 60 * 20;
 
 function removeOldMessages(messages) {
     // Clear outdated ones first
