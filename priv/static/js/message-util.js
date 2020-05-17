@@ -27,7 +27,7 @@ function maybeSaveMessage(message) {
     } else {
         messages[message] = { votes: 1, initTime: Date.now() }
     }
-    true;
+    return true;
 }
 
 if (typeof module !== 'undefined') {
