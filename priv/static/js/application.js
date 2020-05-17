@@ -1,5 +1,4 @@
 const host = 'localhost:80';
-const expireTime = 1000 * 60 * 5;
 let mostRecentMessage = '';
 
 
@@ -21,14 +20,7 @@ function flashElement(id, attribute, color, originalColor) {
             )
         }
         updateMessageDisplays() {
-            // Clear outdated ones first
-            for (const message of Object.keys(messages)) {
-                if (Date.now() - messages[message].initTime > expireTime) {
-                    delete messages[message]
-                }
-            }
-            const justMessages = Object.keys(messages)
-            justMessages.sort((a,b) => messages[b].votes - messages[a].votes)
+            const justMessages = sortedMessages()
             const main = document.getElementById("main")
             main.innerHTML = "<br><br><br>"
             justMessages.forEach((m, rank) => {
@@ -61,19 +53,12 @@ function flashElement(id, attribute, color, originalColor) {
                 main.scrollTo( 0, selected[0] );     
             }*/
         }
-        isIllegal(message) {
-            return message === "" || message.length > 200 || message.includes("\\") || message.includes(">")
-            || message.includes("<") || message.includes("/")
-        }
         handleMessage(message) {
-            if (this.isIllegal(message)) return
-            if (messages[message] && messages[message].votes) {
-                messages[message].votes++
-            } else {
-                messages[message] = { votes: 1, initTime: Date.now() }
+            const legal = maybeSaveMessage(message)
+            if (legal) {
+                this.updateMessageDisplays()
+                localStorage.setItem('messages', JSON.stringify(messages))
             }
-            this.updateMessageDisplays()
-            localStorage.setItem('messages', JSON.stringify(messages))
         }
 
         setupSocket() {
@@ -94,7 +79,7 @@ function flashElement(id, attribute, color, originalColor) {
             flashElement("text-entry", "background-color", "green", textEntryElem.style['background-color'])
             const input = document.getElementById("message")
             const message = input.value
-            if (this.isIllegal(message)) {
+            if (isIllegal(message)) {
                 if (message !== "") {
                     alert("Illegal Message! Special characters \\ / < > not allowed.")
                 }
@@ -109,13 +94,6 @@ function flashElement(id, attribute, color, originalColor) {
     const websocketClass = new myWebsocketHandler()
     websocketClass.setupSocket()
     const myCreations = {}
-    const currentData = JSON.parse(localStorage.getItem('messages'))
-    const messages = currentData || {
-        "welcome to hive mind": { votes: 4, initTime: Date.now()},
-        "the best thoughts rise to the top": { votes: 2, initTime: Date.now()},
-        "type a thought below and press enter": { votes: 1, initTime: Date.now()},
-        "click on thoughts to upvote them": { votes: 1, initTime: Date.now()}
-    }
     websocketClass.updateMessageDisplays()
 
     setInterval(function() {
