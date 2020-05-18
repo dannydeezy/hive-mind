@@ -70,6 +70,10 @@ function flashElement(id, attribute, color, originalColor) {
             this.socket.addEventListener("close", () => {
                 websocketClass.setupSocket()
             })
+
+            this.socket.addEventListener("error", () => {
+                websocketClass.setupSocket()
+            })
         }
 
         submit(event) {
