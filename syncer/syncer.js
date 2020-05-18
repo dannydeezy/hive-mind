@@ -27,6 +27,11 @@ function begin() {
             console.log('socket closed')
             setTimeout(begin, 1)
         })
+
+        ws.on('error', () => {
+            console.log('socket error')
+            setTimeout(begin, 1)
+        })
         setInterval(() => {
             const data = `const messages = ${JSON.stringify(messages)}`
             fs.writeFileSync(`${jspath}/messages.js`, data)
